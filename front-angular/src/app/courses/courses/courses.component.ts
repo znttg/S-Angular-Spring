@@ -2,6 +2,7 @@ import { CoursesService } from './../services/courses.service';
 import { Component, OnInit } from '@angular/core';
 
 import { Course } from './../model/course';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-courses',
@@ -11,7 +12,7 @@ import { Course } from './../model/course';
 export class CoursesComponent implements OnInit {
 
   // Essa variável é um array do tipo Cursos, definido na interface ./../model/course.ts
-  courses: Course[] = [];
+  courses: Observable<Course[]>;
 
   // Array de string com o nome das propriedades da interface
   displayedColumns = ['name', 'category'];

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
 
 import { Course } from '../model/course';
+import { first, tap } from 'rxjs';
 
 /*
   A classe de serviço, que sim, é apenas uma classe, é responsável por tratar os dados
@@ -18,13 +19,18 @@ import { Course } from '../model/course';
 // A utilização dessa classe no componente é feita por meio da injeção de dependência
 export class CoursesService {
 
+  // determina o endpoint no servidor
+  private readonly API = '/assets/courses.json';
+
   // Para fazer a conexão com o backend, utiliza-se o HttpClient do Angular, que é fornecido automaticamente
   // quando a declaração é feita aqui (injeção de dependência)
   constructor(private httpClient: HttpClient) { }
 
-  list(): Course[] {
-    return [
-      { _id: "1", name: 'Angular', category: 'front-end'},
-    ]
+  list() {
+      return this.httpClient.get<Course[]>(this.API)
+      .pipe(
+        first(),
+        tap(courses => console.log(courses))
+      );
   }
 }
