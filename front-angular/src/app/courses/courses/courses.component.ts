@@ -12,7 +12,7 @@ import { Observable } from 'rxjs';
 export class CoursesComponent implements OnInit {
 
   // Essa variável é um array do tipo Cursos, definido na interface ./../model/course.ts
-  courses: Observable<Course[]>;
+  courses$: Observable<Course[]>;
 
   // Array de string com o nome das propriedades da interface
   displayedColumns = ['name', 'category'];
@@ -26,7 +26,7 @@ export class CoursesComponent implements OnInit {
 
     // Instanciamento de classe
     // this.coursesService = new CoursesService();
-    this.courses = this.coursesService.list();
+    this.courses$ = this.coursesService.list();
   }
 
   // Roda no momento em que o componente é inicializado
