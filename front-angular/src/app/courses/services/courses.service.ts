@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
 
 import { Course } from '../model/course';
-import { first, tap } from 'rxjs';
+import { first, tap, delay } from 'rxjs';
 
 /*
   A classe de serviço, que sim, é apenas uma classe, é responsável por tratar os dados
@@ -26,10 +26,13 @@ export class CoursesService {
   // quando a declaração é feita aqui (injeção de dependência)
   constructor(private httpClient: HttpClient) { }
 
+  // (method) CoursesService.list(): Observable<Course[]>
   list() {
+      // o retorno do método .get<Course[]> é um observable que retorna um array de cursos
       return this.httpClient.get<Course[]>(this.API)
       .pipe(
         first(),
+        delay(1000),
         tap(courses => console.log(courses))
       );
   }
