@@ -20,7 +20,7 @@ import { first, tap, delay } from 'rxjs';
 export class CoursesService {
 
   // determina o endpoint no servidor
-  private readonly API = '/assets/courses.json';
+  private readonly API = '/api/courses';
 
   // Para fazer a conexão com o backend, utiliza-se o HttpClient do Angular, que é fornecido automaticamente
   // quando a declaração é feita aqui (injeção de dependência)

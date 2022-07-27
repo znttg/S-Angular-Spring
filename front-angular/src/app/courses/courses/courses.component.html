@@ -9,6 +9,14 @@
       <!--- Note that these columns can be defined in any order.
             The actual rendered columns are set as a property on the row definition" -->
 
+      <!-- ID Column -->
+      <ng-container matColumnDef="_id">
+        <th mat-header-cell *matHeaderCellDef>ID</th>
+        <td mat-cell *matCellDef="let course">{{ course._id }}
+          <mat-icon aria-hidden="false" aria-label="Categoria do curso">{{ course._id }}</mat-icon>
+        </td>
+      </ng-container>
+
       <!-- Name Column -->
 
       <!-- A associação deve ser usar um nome exatamente como na interface -->

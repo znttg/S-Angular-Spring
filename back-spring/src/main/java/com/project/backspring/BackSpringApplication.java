@@ -23,7 +23,7 @@ public class BackSpringApplication {
             courseRepository.deleteAll();
 
             Course c = new Course();
-            c.setName("Angular com Spring");
+            c.setName("Angular + Spring");
             c.setCategory("Front-end");
 
             courseRepository.save(c);
