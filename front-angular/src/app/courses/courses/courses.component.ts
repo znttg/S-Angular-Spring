@@ -5,6 +5,7 @@ import { Component, OnInit } from '@angular/core';
 import { Course } from './../model/course';
 import { catchError, Observable, of } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-courses',
@@ -17,7 +18,7 @@ export class CoursesComponent implements OnInit {
   courses$: Observable<Course[]>;
 
   // Array de string com o nome das propriedades da interface
-  displayedColumns = ['name', 'category'];
+  displayedColumns = ['name', 'category', 'actions'];
 
   // Injeção de dependência
   // coursesService: CoursesService;
@@ -25,7 +26,12 @@ export class CoursesComponent implements OnInit {
   // Injeção de dependência direto no construtor
   constructor(
     private coursesService: CoursesService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    // Classe que controla o roteamento
+    private router: Router,
+    // Pegar o parâmetro pra pagina atual
+    private route: ActivatedRoute
+
     ) {
     // this.courses = [];
 
@@ -49,5 +55,12 @@ export class CoursesComponent implements OnInit {
   ngOnInit(): void {
     // this.courses = this.coursesService.list();
   }
+
+  // Ao clicar no botão, chama esse método, conforme determinado no HTML
+  onAdd() {
+    // Pega a rota atual e adiciona /new, ou seja, fica "cursos/new"
+    this.router.navigate(['new'], {relativeTo: this.route});
+  }
+
 
 }
