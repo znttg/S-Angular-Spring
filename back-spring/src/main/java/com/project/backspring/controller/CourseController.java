@@ -3,10 +3,9 @@ package com.project.backspring.controller;
 import com.project.backspring.model.Course;
 import com.project.backspring.repository.CourseRepository;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -30,5 +29,14 @@ public class CourseController {
     public @ResponseBody List<Course> list() {
         // findAll faz um SELECT * da tabela, sem clausulas WHERE
         return courseRepository.findAll();
+    }
+
+    // Método responsável por criar os cursos no BD
+    // Seria o mesmo que escrever: @RequestMapping(method = RequestMethod.POST)
+    @PostMapping
+    @ResponseStatus(code = HttpStatus.CREATED)
+        public Course create(@RequestBody Course course) {
+            return courseRepository.save(course);
+        //  return ResponseEntity.status(HttpStatus.CREATED).body(courseRepository.save(course));
     }
 }
