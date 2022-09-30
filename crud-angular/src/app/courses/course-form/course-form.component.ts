@@ -1,8 +1,9 @@
-import { CoursesService } from './../services/courses.service';
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
-import { Location } from '@angular/common';
 import { MatSnackBar } from '@angular/material/snack-bar';
+
+import { CoursesService } from './../services/courses.service';
 
 
 @Component({
@@ -10,6 +11,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   templateUrl: './course-form.component.html',
   styleUrls: ['./course-form.component.scss']
 })
+
 export class CourseFormComponent implements OnInit {
 
   form: UntypedFormGroup;
